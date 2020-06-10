@@ -55,7 +55,7 @@ async function playTest() {
   });
 
   await page.setDefaultTimeout(2000);
-
+  
   for (let i = 0; i < options.length; i++) {
     await page.click(BROKER_SELECTOR);
     await page.keyboard.type(options[i]);
@@ -68,7 +68,11 @@ async function playTest() {
       await page.focus(CTA_SELECTOR);
       await page.click(CTA_SELECTOR);
       await page.waitFor(500);
-    } catch (err) {}
+    } catch (err) {      
+      await page.focus(CTA_SELECTOR);
+      await page.click(CTA_SELECTOR);
+      await page.waitFor(500);
+    }
   }
 
   await page.goto(URL_Bond);
